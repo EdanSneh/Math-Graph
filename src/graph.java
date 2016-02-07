@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.util.Scanner;
+
 import javax.swing.JFrame;
 
 
@@ -19,12 +21,26 @@ public class graph extends JFrame{
 	}
 	
 	public void paint(Graphics window){
+		String str1 = "bar";
+		String str2 = "foo";
+		String str3 = "";
+		str3 += str1;
+		str3 += str2;
+		System.out.println(str3);
+				
 		int ratio = 10;
 		window.setColor(Color.BLACK);
 		drawnew(window, ratio);
-		while(true){
+		
+			String sequation = "";
 			
-		}
+			Scanner equation = new Scanner(System.in);
+			System.out.println("What is your equation?");
+			sequation += equation.next();
+			
+			System.out.println(equation.hasNext()); 
+			System.out.println(sequation);
+		
 		
 	}
 	public void drawnew(Graphics window, int ratio){
