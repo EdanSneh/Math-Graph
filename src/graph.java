@@ -8,6 +8,7 @@ public class graph extends JFrame{
 	
 	int Width = 800;
 	int Height = 600;
+	boolean working = true;
 	
 	public graph(){
 		initialize();
@@ -21,6 +22,8 @@ public class graph extends JFrame{
 	}
 	
 	public void paint(Graphics window){
+		
+		while(working == true){
 		String str1 = "bar";
 		String str2 = "foo";
 		String str3 = "";
@@ -36,11 +39,17 @@ public class graph extends JFrame{
 			
 			Scanner equation = new Scanner(System.in);
 			System.out.println("What is your equation?");
-			sequation += equation.next();
-			
-			System.out.println(equation.hasNext()); 
+			boolean empty = true;
+			while(empty){
+				sequation = equation.nextLine();
+				
+				empty = sequation.equals(""); 
+				
+			}
 			System.out.println(sequation);
-		
+			
+		working = false;	
+		}
 		
 	}
 	public void drawnew(Graphics window, int ratio){
@@ -48,7 +57,9 @@ public class graph extends JFrame{
 		for (int i = 0; i < Width; i+= ratio) {
 			window.drawLine(i, 0, i, Height);
 			
+			
 		}
+
 		for(int i = 0; i< Height; i+= ratio) {
 			window.drawLine(0, i, Width, i);
 		}
