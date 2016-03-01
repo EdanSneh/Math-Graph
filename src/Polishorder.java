@@ -1,24 +1,18 @@
 import java.util.*;
 
-public class polishorder {
+public class Polishorder {
 	static LinkedList<String> list;
 	static LinkedList<String> variableamount;
 	static Stack stack;
 	
-	public polishorder(String str){
+	public Polishorder(String str){
 		String[] sentence = str.split(" ");
 		list = new LinkedList<String>();
 		variableamount = new LinkedList<String>();
 		stack = new Stack(sentence.length);
 		translate(sentence);
 	}
-//	public static void main(String[] args) {
-//		String str = "a & b | b => d ";
-//		String[] sentence = str.split(" ");
-//		list = new LinkedList<String>();
-//		stack = new Stack(sentence.length);
-//		translate(sentence);
-//	}
+
 	private static void translate(String[] original) {
 		for (int i = 0; i < original.length; i++) {
 			//printlist(list);
@@ -107,5 +101,13 @@ public class polishorder {
 	public Object[] returnvar(){
 		Object[] array = variableamount.toArray();
 		return array;
+	}
+	
+	public LinkedList<String> getList(){
+		return list;
+	}
+	
+	public int getvariabeamount(){
+		return variableamount.size();
 	}
 }

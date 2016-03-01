@@ -1,4 +1,8 @@
-
+/**
+ * This class creates a data structure of type LIFO (AKA. a stack).
+ * @author 95018318
+ *
+ */
 public class Stack {
 	static int index = -1;
 	static String[] nstack;
