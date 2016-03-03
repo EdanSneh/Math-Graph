@@ -1,3 +1,4 @@
+package Core;
 /**
  * This class creates a data structure of type LIFO (AKA. a stack).
  * @author 95018318

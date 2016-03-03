@@ -1,3 +1,4 @@
+package Core;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,6 +9,9 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
+
+import algorithms.Polishorder;
+import algorithms.graphtotable;
 
 
 
@@ -56,24 +60,16 @@ private static void questions() {
 			
 		}
 		Polishorder equation = new Polishorder(sequation); 
-		linegrapher(equation);
+		graphtotable table1 = new graphtotable(equation);
+		printarray(table1.getxtable());
+		printarray(table1.getytable());
 	}
 
-/**
- * Takes in a translated equation and converts it to a table.
- * @param equation
- */
-private static void linegrapher(Polishorder equation) {
-	LinkedList<String> line = equation.getList();
-	int varamount = equation.getvariabeamount();
-	double[] xtable = new double[100];
-	double[] ytable = new double[100];
-	
-	for(int i = -xtable.length/2; i<xtable.length/2; i++){
-		
+private static void printarray(double[] getxtable) {
+	for (int i = 0; i < getxtable.length; i++) {
+		System.out.print(getxtable[i]+" ");
 	}
-	
-	System.out.println(line);
+	System.out.println();
 }
 
 /**

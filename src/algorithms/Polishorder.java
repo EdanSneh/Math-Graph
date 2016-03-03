@@ -1,4 +1,7 @@
+package algorithms;
 import java.util.*;
+
+import Core.Stack;
 
 public class Polishorder {
 	static LinkedList<String> list;
@@ -56,7 +59,7 @@ public class Polishorder {
 	}
 	
 	public static boolean operatorcheck(String operator){
-		if(operator.equals("~") || operator.equals("&") || operator.equals("|") || operator.equals("=>") || operator.equals("<=>")){
+		if(operator.equals("+") || operator.equals("-") || operator.equals("/") || operator.equals("*") || operator.equals("^")){
 
 			return true;
 		}
