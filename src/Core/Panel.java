@@ -21,7 +21,8 @@ public class Panel extends JPanel{
 	static int Height = 600;
 	static double ratio = Height/20;
 	static JFrame g = new JFrame("Graphing Calculator");
-	
+	private static boolean lineswitch = true;
+	static graphtotable staticstable;
 	
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -61,9 +62,17 @@ private static void questions() {
 		}
 		Polishorder equation = new Polishorder(sequation); 
 		graphtotable table1 = new graphtotable(equation);
-		printarray(table1.getxtable());
-		printarray(table1.getytable());
+		staticstable = table1;
+		lineswitch = false;
+		
 	}
+
+private static void graphline(double[] getxtable, double[] getytable, Graphics window) {
+	for (int i = 0; i < getytable.length-1; i++) {
+		window.drawLine((int)(getxtable[i]+Width/2), (int)(getytable[i]+Height/2), (int)(getxtable[i+1]+Width/2), (int)(getytable[i+1]+Height/2));
+	}
+	System.out.println("graphed");
+}
 
 private static void printarray(double[] getxtable) {
 	for (int i = 0; i < getxtable.length; i++) {
@@ -76,7 +85,10 @@ private static void printarray(double[] getxtable) {
  * paint method for the window
  */
 public void paint(Graphics window){
-	
+	System.out.println("d");
+	if(lineswitch == false){
+		System.out.println("f");graphline(staticstable.getxtable(), staticstable.getytable(), window);
+	}
 	drawnew(window);	
 }
 
@@ -121,7 +133,7 @@ public void paint(Graphics window){
 			ratio = (double)(Height)/20.0;
 		}
 		if(oldwidth != Width && oldheight != Height)
-		g.repaint();
+			g.repaint();
 		
 	}
 }

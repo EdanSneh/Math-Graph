@@ -11,32 +11,40 @@ public class graphtotable {
 		int varamount = equation.getvariabeamount();
 		LinkedList<String> temp;
 		for(int i = -xtable.length/2; i<xtable.length/2; i++){
+			ytable[i+xtable.length/2] = i;
 			temp = hardclone(line);
 			for(int j = 0; j < temp.size(); j++){
 				if(temp.get(j).equals("x")){
-					temp.add(i, Integer.toString(j));
+					
+					temp.set(j, Integer.toString(i));
+				}
+				if(temp.size() == 1){
+					xtable[i+xtable.length/2] = Double.parseDouble(temp.get(0));
+					
 				}
 				if(operatorcheck(line.get(j))){
-					xtable[i+xtable.length/2] = operate(line.get(j-1), line.get(j-2), line.get(j));
+					
+					xtable[i+xtable.length/2] = operate(temp.get(j-1), temp.get(j-2), temp.get(j));
+					
 					temp.remove(temp.get(j-2));
 					temp.remove(temp.get(j-2));
-					temp.remove(temp.get(j-2));
-					temp.add(j-2, Integer.toString((int)xtable[i+xtable.length/2]));
-					System.out.println(temp);
+					temp.set(j-2, Integer.toString((int)xtable[i+xtable.length/2]));
+					j=j-2;
 				}
 			}
 			
 			
 		}
 		
-		System.out.println(line);
 	}
 	
 	private double operate(String var2, String var1, String operator) {
 		double num1 = Double.parseDouble(var1);
 		double num2 = Double.parseDouble(var2);
+		
 		switch(operator){
 		case "+":
+			
 			return num1 + num2;
 		case "-":
 			return num1 - num2;
