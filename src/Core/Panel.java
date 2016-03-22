@@ -22,6 +22,9 @@ public class Panel extends JPanel{
 	static double ratio = Height/20;
 	static JFrame g = new JFrame("Graphing Calculator");
 	private static boolean lineswitch = true;
+	
+	private static boolean firstpaint = true; //paints the first line as soon as it is graphed
+	
 	static graphtotable staticstable;
 	
 	public static void main(String[] args) throws InterruptedException {
@@ -51,21 +54,34 @@ public class Panel extends JPanel{
 private static void questions() {
 		String sequation = "";
 		
-		Scanner Prompter = new Scanner(System.in);
+		Scanner Prompter = null;
 		System.out.println("What is your equation?");
-		boolean empty = true;
-		while(empty){
-			sequation = Prompter.nextLine();
+		sequation = request(Prompter, sequation);	
 			
-			empty = sequation.equals(""); 
-			
-		}
 		Polishorder equation = new Polishorder(sequation); 
 		graphtotable table1 = new graphtotable(equation);
 		staticstable = table1;
 		lineswitch = false;
-		
+		firstpaint = false;
 	}
+
+private static String request(Scanner prompter, String sequation) {
+	try{
+		prompter = new Scanner(System.in);
+		boolean empty = true;
+		while(empty){
+			sequation = prompter.nextLine();
+			
+			empty = sequation.equals(""); 
+			
+		}
+	}
+	catch(NumberFormatException error){
+		System.err.println("Please Input a String");
+		request(prompter, sequation);
+	}
+	return sequation;
+}
 
 private static void graphline(double[] getxtable, double[] getytable, Graphics window) {
 	for (int i = 0; i < getytable.length-1; i++) {
@@ -85,9 +101,8 @@ private static void printarray(double[] getxtable) {
  * paint method for the window
  */
 public void paint(Graphics window){
-	System.out.println("d");
 	if(lineswitch == false){
-		System.out.println("f");graphline(staticstable.getxtable(), staticstable.getytable(), window);
+		graphline(staticstable.getxtable(), staticstable.getytable(), window);
 	}
 	drawnew(window);	
 }
@@ -134,6 +149,9 @@ public void paint(Graphics window){
 		}
 		if(oldwidth != Width && oldheight != Height)
 			g.repaint();
-		
+		if(firstpaint == false){
+			g.repaint();
+			firstpaint = true;
+		}
 	}
 }
