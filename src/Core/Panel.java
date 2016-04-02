@@ -82,11 +82,25 @@ private static String request(Scanner prompter, String sequation) {
 	}
 	return sequation;
 }
-
+/**
+ * Graphs the line using the X and Y table
+ * @param getxtable
+ * @param getytable
+ * @param window
+ */
 private static void graphline(double[] getxtable, double[] getytable, Graphics window) {
-	for (int i = 0; i < getytable.length-1; i++) {
-		window.drawLine((int)(getxtable[i]+Width/2), (int)(getytable[i]+Height/2), (int)(getxtable[i+1]+Width/2), (int)(getytable[i+1]+Height/2));
+	if(Width<Height){
+		for (int i = 0; i < getytable.length-1; i++) {
+			window.drawLine((int)(getxtable[i]*ratio+Width/2), (int)(getytable[i]*ratio+Width/2), (int)(getxtable[i+1]*ratio+Width/2), (int)(getytable[i+1]*ratio+Width/2));
+		}
 	}
+	else{
+		for (int i = 0; i < getytable.length-1; i++) {
+	window.drawLine((int)(getxtable[i]*ratio+Height/2), (int)(getytable[i]*ratio+Height/2), (int)(getxtable[i+1]*ratio+Height/2), (int)(getytable[i+1]*ratio+Height/2));
+		}
+	}
+		
+	
 	System.out.println("graphed");
 }
 
