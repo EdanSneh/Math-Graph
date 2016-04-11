@@ -3,20 +3,24 @@ package algorithms;
 import java.util.LinkedList;
 
 public class graphtotable {
-	private double[] xtable = new double[100];
-	private double[] ytable = new double[100];
+	
+	double step = 1.0/1000.0;
+	private double[] xtable = new double[(int)(1/step*100)];
+	private double[] ytable = new double[(int)(1/step*100)];
+	
 	
 	public graphtotable(Polishorder equation){
 		LinkedList<String> line = equation.getList();
 		int varamount = equation.getvariabeamount();
 		LinkedList<String> temp;
 		for(int i = -xtable.length/2; i<xtable.length/2; i++){
-			ytable[i+xtable.length/2] = i;
+			ytable[i+xtable.length/2] = i*step;
 			temp = hardclone(line);
+			System.out.println(1/step);
 			for(int j = 0; j < temp.size(); j++){
 				if(temp.get(j).equals("x")){
 					
-					temp.set(j, Integer.toString(i));
+					temp.set(j, Double.toString(i*step));
 				}
 				if(temp.size() == 1){
 					xtable[i+xtable.length/2] = Double.parseDouble(temp.get(0));
@@ -54,6 +58,8 @@ public class graphtotable {
 			return num1/num2;
 		case "^":
 			return Math.pow(num1, num2);
+		//case "sqrt":
+			//return Math.sqrt()
 		default:
 			System.err.println("Error the operator is not an operator");
 			System.exit(1);

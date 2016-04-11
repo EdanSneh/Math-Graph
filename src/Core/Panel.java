@@ -22,6 +22,8 @@ public class Panel extends JPanel{
 	static double ratio = Height/20;
 	static JFrame g = new JFrame("Graphing Calculator");
 	private static boolean lineswitch = true;
+	private int thickness = 10;
+	
 	
 	private static boolean firstpaint = true; //paints the first line as soon as it is graphed
 	
@@ -88,20 +90,23 @@ private static String request(Scanner prompter, String sequation) {
  * @param getytable
  * @param window
  */
-private static void graphline(double[] getxtable, double[] getytable, Graphics window) {
-	if(Width<Height){
-		for (int i = 0; i < getytable.length-1; i++) {
-			window.drawLine((int)(getxtable[i]*ratio+Width/2), (int)(getytable[i]*ratio+Width/2), (int)(getxtable[i+1]*ratio+Width/2), (int)(getytable[i+1]*ratio+Width/2));
+private void graphline(double[] getxtable, double[] getytable, Graphics window) {
+	//for(int counter = -thickness/2; counter<thickness/2; counter++){
+		window.setColor(Color.BLUE);
+		if(Width<Height){
+			for (int i = 0; i < getytable.length-1; i++) {
+				window.drawLine((int)(getytable[i]*ratio+Width/2), (int)(-getxtable[i]*ratio+Width/2), (int)(getytable[i+1]*ratio+Width/2), (int)(-getxtable[i+1]*ratio+Width/2));
+			}
 		}
-	}
-	else{
-		for (int i = 0; i < getytable.length-1; i++) {
-	window.drawLine((int)(getxtable[i]*ratio+Height/2), (int)(getytable[i]*ratio+Height/2), (int)(getxtable[i+1]*ratio+Height/2), (int)(getytable[i+1]*ratio+Height/2));
+		else{
+			for (int i = 0; i < getytable.length-1; i++) {
+		window.drawLine((int)(getytable[i]*ratio+Height/2), (int)(-getxtable[i]*ratio+Height/2), (int)(getytable[i+1]*ratio+Height/2), (int)(-getxtable[i+1]*ratio+Height/2));
+			}
 		}
-	}
+			
 		
-	
-	System.out.println("graphed");
+		System.out.println("graphed");
+	//}
 }
 
 private static void printarray(double[] getxtable) {
@@ -135,7 +140,7 @@ public void paint(Graphics window){
 		for(double i = 0; i< Height; i+= ratio) {
 			window.drawLine(0, (int)i, Width, (int)i);
 		}
-		window.setColor(Color.BLACK);
+		window.setColor(Color.RED);
 		if(Width<Height){
 			
 			window.drawLine(Width/2, 0, Width/2, Height);
