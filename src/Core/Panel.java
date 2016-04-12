@@ -3,6 +3,8 @@ package Core;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -44,6 +46,9 @@ public class Panel extends JPanel{
 		Panel graph = new Panel();
 		g.add(graph);
 		g.setVisible(true);
+		
+		
+		//prompts the user
 		questions();
 		
 		
@@ -120,6 +125,7 @@ private static void printarray(double[] getxtable) {
  * paint method for the window
  */
 public void paint(Graphics window){
+	
 	if(lineswitch == false){
 		graphline(staticstable.getxtable(), staticstable.getytable(), window);
 	}
@@ -173,4 +179,5 @@ public void paint(Graphics window){
 			firstpaint = true;
 		}
 	}
+
 }
